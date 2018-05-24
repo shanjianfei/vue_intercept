@@ -54,6 +54,33 @@ router.beforeEach((to, from, next) => {
 
 #### 第二步：对http请求进行登录拦截
 vue2.0之后，vue-resource已不再更新，所以http库使用的是axios。
+request拦截器
+```js
+// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+    // 在发送请求之前做些什么
+    config.headers['Authorization'] = AUTH_TOKEN;
+    return config;
+  }, function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error);
+  });
+```
+response拦截器
+```js
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error) {
+    // 当验证不通过，则清除本地保存的token，并且返回登录界面
+    if(error.status === 401) {
+        localStorage.removeItem('token');
+        router.push('/login');
+    }
+    return Promise.reject(error);
+  });
+
+```
 
 ## Build Setup
 
