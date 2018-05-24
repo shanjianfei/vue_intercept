@@ -9,22 +9,8 @@ export default {
   name: 'UserInfo',
   data () {
     return {
-      msg: 'User Info:'
+      msg: '用户信息如下:'
     }
   }
 }
 </script>
-
-<style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

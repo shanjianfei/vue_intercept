@@ -8,7 +8,7 @@
 export default {
     data: function() {
         return {
-            msg: 'User List:'
+            msg: '用户列表如下:'
         }
     },
 }
