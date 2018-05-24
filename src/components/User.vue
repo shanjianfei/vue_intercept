@@ -2,17 +2,17 @@
     <div class="user">
         <h2>首页</h2>
         <div>
-            <ul>
-                <li><router-link to="/user/userinfo">User Info</router-link></li>
-                <li><router-link to="/user/userlist">User List</router-link></li>
-            </ul>
+            <router-link to="/user/userinfo" tag="button">User Info</router-link></li>
+            <router-link to="/user/userlist" tag="button">User List</router-link></li>
         </div>
         <router-view></router-view>
     </div>
 </template>
-
 <style>
-    .user {
-        text-align: left;
+    li {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;
     }
 </style>
