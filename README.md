@@ -49,8 +49,10 @@ router.beforeEach((to, from, next) => {
     }
 })
 ```
+当然对于路由拦截还远远不够，就拿最简单的情形来讲，token在后端已失效，但是前端页面还是能够正常操作，在这里就是正常渲染UserList组件。
+那就需要在进行http请求的时候进行拦截。
 
-#### 第二部：http请求拦截
+#### 第二步：对http请求进行登录拦截
 
 ## Build Setup
 
