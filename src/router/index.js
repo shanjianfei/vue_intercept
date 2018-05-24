@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import User from '@/components/User'
+import HomePage from '@/components/HomePage'
 import UserInfo from '@/components/UserInfo'
-import UserList from '@/components/UserList'
+import News from '@/components/News'
 import LogIn from '@/components/LogIn'
 
 Vue.use(Router)
@@ -11,24 +11,24 @@ const router = new Router({
   routes: [
     {
         path: '/',
-        redirect: '/user',
+        redirect: '/homepage',
     },
     {
         path: '/login',
         component: LogIn
     },
     {
-        path: '/user',
-        component: User,
+        path: '/homepage',
+        component: HomePage,
         children: [
             {
                 path: 'userinfo',
-                component: UserInfo
+                component: UserInfo,
+                meta: {authRequired: true}
             },
             {
-                path: 'userlist',
-                component: UserList,
-                meta: {authRequired: true}
+                path: 'news',
+                component: News,
             }
         ]
     }
@@ -40,7 +40,7 @@ router.beforeEach((to, from, next) => {
         if(localStorage.getItem('token')) {
             next()
         } else {
-            next({path: '/login'})
+            next({path: '/login', query:{redirect: to.fullPath}})
         }
     } else {
         next()

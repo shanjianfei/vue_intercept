@@ -53,6 +53,7 @@ router.beforeEach((to, from, next) => {
 那就需要在进行http请求的时候进行拦截。
 
 #### 第二步：对http请求进行登录拦截
+vue2.0之后，vue-resource已不再更新，所以http库使用的是axios。
 
 ## Build Setup
 

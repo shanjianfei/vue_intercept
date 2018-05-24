@@ -1,16 +1,16 @@
 <template>
-  <div class="user-info">
-    {{msg}}
-  </div>
+    <div class="user-info">
+        <br/>
+        <h1>{{msg}}</h1>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'UserInfo',
-  data () {
-    return {
-      msg: '用户信息如下:'
+    data: function() {
+        return {
+            msg: '个人主页'
+        }
     }
-  }
 }
 </script>
