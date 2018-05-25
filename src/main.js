@@ -6,12 +6,11 @@ import router from './router'
 import axios from 'axios'
 
 Vue.config.productionTip = false
-const AUTH_TOKEN = localStorage.getItem('token')
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
-    config.headers['Authorization'] = AUTH_TOKEN;
+    config.headers['Authorization'] = localStorage.getItem('token');
     return config;
   }, function (error) {
     // 对请求错误做些什么
@@ -23,7 +22,7 @@ axios.interceptors.response.use(function (response) {
     return response;
   }, function (error) {
     // 当验证不通过，则清除本地保存的token，并且返回登录界面
-    if(error.status === 401) {
+    if(error.response.status === 401) {
         localStorage.removeItem('token');
         router.push('/login');
     }

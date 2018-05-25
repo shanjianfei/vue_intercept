@@ -19,10 +19,13 @@ export default {
                 let token = response.data.token;
                 if(token) {
                     localStorage.setItem('token', token);
+                    console.log(localStorage)
                     self.$router.push({path: self.$route.query.redirect || '/'});
                 }
             })
-            .catch(function(error) {console.log(error)});
+            .catch(function(error) {
+                console.log(error)
+            });
         }
     }
 }
