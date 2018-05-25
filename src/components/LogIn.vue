@@ -1,25 +1,28 @@
 <template>
     <div class="login">
         <form>
-            <label for="token">请输入token:</label>
-            <input type="text" name="token" id="token" v-model="token">
+            <label for="token">用户名:</label>
+            <input type="text" name="token" id="token">
+            <label for="token">密码:</label>
+            <input type="text" name="token" id="token">
             <input type="button" @click="login" value="login">
         </form>
     </div>
 </template>
 <script>
 export default {
-    data: function() {
-        return {
-            token: ''
-        }
-    },
     methods:{
         login() {
-            if(this.token) {
-                localStorage.setItem('token', this.token);
-                this.$router.push({path: this.$route.query.redirect || '/'})
-            }
+            let self = this;
+            self.$axios.post('/login', {usr:'admin', psd: '123456'})
+            .then(function(response) {
+                let token = response.data.token;
+                if(token) {
+                    localStorage.setItem('token', token);
+                    self.$router.push({path: self.$route.query.redirect || '/'});
+                }
+            })
+            .catch(function(error) {console.log(error)});
         }
     }
 }
